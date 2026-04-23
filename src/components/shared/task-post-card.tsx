@@ -1,6 +1,6 @@
 import { ContentImage } from '@/components/shared/content-image'
 import Link from 'next/link'
-import { ArrowUpRight, ExternalLink, FileText, Mail, MapPin, Tag } from 'lucide-react'
+import { ArrowUpRight, ExternalLink, FileText, Mail, MapPin, Star, Tag } from 'lucide-react'
 import type { SitePost } from '@/lib/site-connector'
 import { CATEGORY_OPTIONS, normalizeCategory } from '@/lib/categories'
 import type { TaskKey } from '@/lib/site-config'
@@ -22,6 +22,11 @@ const stripHtml = (value?: string | null) =>
     .replace(/<\/?[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
+
+const listingRatingFromId = (id: string) => {
+  const n = id.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0)
+  return 4 + (n % 10) / 10
+}
 
 const getExcerpt = (value?: string | null, maxLength = 140) => {
   const text = stripHtml(value)
@@ -150,6 +155,16 @@ export function TaskPostCard({
             <h3 className={`line-clamp-2 text-xl font-semibold leading-snug ${cardTone.title}`}>{post.title}</h3>
             <ArrowUpRight className={`h-5 w-5 shrink-0 ${cardTone.muted}`} />
           </div>
+          {variant === 'listing' ? (
+            <div className="mt-2 flex items-center gap-1.5">
+              <div className="flex text-[#e98b2a]">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className={`h-3.5 w-3.5 ${i < Math.round(listingRatingFromId(post.id)) ? 'fill-current' : 'fill-none opacity-35'}`} strokeWidth={1.5} />
+                ))}
+              </div>
+              <span className={`text-xs font-semibold ${cardTone.muted}`}>{listingRatingFromId(post.id).toFixed(1)}</span>
+            </div>
+          ) : null}
           <p className={`mt-3 line-clamp-3 text-sm leading-7 ${cardTone.muted}`}>{getExcerpt(content.description || post.summary) || 'Explore this local listing.'}</p>
           <div className="mt-5 flex flex-wrap gap-3 text-xs">
             {content.location ? <span className={`inline-flex items-center gap-1 ${cardTone.muted}`}><MapPin className="h-3.5 w-3.5" />{content.location}</span> : null}
