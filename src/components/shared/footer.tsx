@@ -32,10 +32,10 @@ const footerLinks = {
     { name: 'Press', href: '/press' },
   ],
   resources: [
-    { name: 'Help Center', href: '/help' },
-    { name: 'Community', href: '/community' },
+    { name: 'Help center', href: '/help' },
+    { name: 'Plans & contact', href: '/contact' },
     { name: 'Developers', href: '/developers' },
-    { name: 'Status', href: '/status' },
+    { name: 'System status', href: '/status' },
   ],
   legal: [
     { name: 'Privacy', href: '/privacy' },
@@ -173,34 +173,54 @@ export function Footer() {
     )
   }
 
+  const sectionTitles: Record<'platform' | 'company' | 'resources' | 'legal', string> = {
+    platform: 'Directory',
+    company: 'Our company',
+    resources: 'Our services',
+    legal: 'Legal',
+  }
+
   return (
-    <footer className="border-t border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] text-slate-950">
+    <footer className="border-t border-[#c5d4c4] bg-[linear-gradient(180deg,#fbfdfb_0%,#f0f5f1_100%)] text-[#142018]">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <div className="h-11 w-11 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
+              <div className="h-11 w-11 overflow-hidden rounded-2xl border border-[#c5d4c4] bg-white p-1 shadow-sm">
                 <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="44" height="44" className="h-full w-full object-contain" />
               </div>
               <div>
                 <span className="block text-lg font-semibold">{SITE_CONFIG.name}</span>
-                <span className="text-xs uppercase tracking-[0.22em] text-slate-500">{siteContent.footer.tagline}</span>
+                <span className="text-xs uppercase tracking-[0.22em] text-[#4a5c4d]">{siteContent.footer.tagline}</span>
               </div>
             </Link>
-            <p className="mt-5 max-w-sm text-sm leading-7 text-slate-600">{SITE_CONFIG.description}</p>
+            <p className="mt-5 max-w-sm text-sm leading-7 text-[#4a5c4d]">{SITE_CONFIG.description}</p>
+            <p className="mt-4 text-sm text-[#4a5c4d]">
+              <span className="font-medium text-[#142018]">Contact:</span>{' '}
+              <a href={`mailto:support@${SITE_CONFIG.domain}`} className="underline-offset-2 hover:underline">
+                support@{SITE_CONFIG.domain}
+              </a>
+            </p>
+            <div className="mt-5 flex gap-3">
+              {socialLinks.map((item) => (
+                <Link key={item.name} href={item.href} target="_blank" rel="noopener noreferrer" className="rounded-full border border-[#c5d4c4] bg-white p-2.5 text-[#1a472a] hover:bg-[#eef5ed]">
+                  <item.icon className="h-4 w-4" />
+                </Link>
+              ))}
+            </div>
           </div>
           {(['platform', 'company', 'resources', 'legal'] as const).map((section) => (
             <div key={section}>
-              <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">{section}</h3>
-              <ul className="mt-5 space-y-3 text-sm text-slate-600">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[#4a5c4d]">{sectionTitles[section]}</h3>
+              <ul className="mt-5 space-y-3 text-sm text-[#4a5c4d]">
                 {footerLinks[section].map((item: any) => (
-                  <li key={item.name}><Link href={item.href} className="flex items-center gap-2 hover:text-slate-950">{item.icon ? <item.icon className="h-4 w-4" /> : null}{item.name}</Link></li>
+                  <li key={item.name}><Link href={item.href} className="flex items-center gap-2 hover:text-[#0f2415]">{item.icon ? <item.icon className="h-4 w-4" /> : null}{item.name}</Link></li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <div className="mt-12 border-t border-slate-200 pt-6 text-center text-sm text-slate-500">&copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</div>
+        <div className="mt-12 border-t border-[#c5d4c4] pt-6 text-center text-sm text-[#4a5c4d]">&copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</div>
       </div>
     </footer>
   )

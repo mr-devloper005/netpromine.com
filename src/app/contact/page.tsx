@@ -1,19 +1,24 @@
-import { Building2, FileText, Image as ImageIcon, Mail, MapPin, Phone, Sparkles, Bookmark } from 'lucide-react'
+import Link from 'next/link'
+import { Building2, Mail, MapPin, Phone, Sparkles } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
 import { CONTACT_PAGE_OVERRIDE_ENABLED, ContactPageOverride } from '@/overrides/contact-page'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 
 function getTone(kind: ReturnType<typeof getProductKind>) {
   if (kind === 'directory') {
     return {
-      shell: 'bg-[#f8fbff] text-slate-950',
-      panel: 'border border-slate-200 bg-white',
-      soft: 'border border-slate-200 bg-slate-50',
-      muted: 'text-slate-600',
-      action: 'bg-slate-950 text-white hover:bg-slate-800',
+      shell: 'bg-[#fbfdfb] text-[#142018]',
+      panel: 'border border-[#c5d4c4] bg-white shadow-[0_24px_60px_rgba(20,32,24,0.08)]',
+      soft: 'border border-[#d5e3d4] bg-[#f4faf4]',
+      muted: 'text-[#4a5c4d]',
+      action: 'bg-[#1a472a] text-white hover:bg-[#143620]',
+      hero: 'border-b border-[#c5d4c4] bg-[linear-gradient(180deg,#e8f2ea_0%,#f4f7f3_100%)]',
     }
   }
   if (kind === 'editorial') {
@@ -23,6 +28,7 @@ function getTone(kind: ReturnType<typeof getProductKind>) {
       soft: 'border border-[#e6d6c8] bg-[#fff4e8]',
       muted: 'text-[#6e5547]',
       action: 'bg-[#241711] text-[#fff1e2] hover:bg-[#3a241b]',
+      hero: 'border-b border-[#dbc6b6] bg-[linear-gradient(180deg,#fff9f0_0%,#fff1df_100%)]',
     }
   }
   if (kind === 'visual') {
@@ -32,6 +38,7 @@ function getTone(kind: ReturnType<typeof getProductKind>) {
       soft: 'border border-white/10 bg-white/5',
       muted: 'text-slate-300',
       action: 'bg-[#8df0c8] text-[#07111f] hover:bg-[#77dfb8]',
+      hero: 'border-b border-white/10 bg-white/5',
     }
   }
   return {
@@ -40,6 +47,7 @@ function getTone(kind: ReturnType<typeof getProductKind>) {
     soft: 'border border-[#e8dbce] bg-[#f3e8db]',
     muted: 'text-[#71574a]',
     action: 'bg-[#5b2b3b] text-[#fff0f5] hover:bg-[#74364b]',
+    hero: 'border-b border-[#ddcdbd] bg-[#fffaf4]',
   }
 }
 
@@ -54,57 +62,83 @@ export default function ContactPage() {
   const lanes =
     productKind === 'directory'
       ? [
-          { icon: Building2, title: 'Business onboarding', body: 'Add listings, verify operational details, and bring your business surface live quickly.' },
-          { icon: Phone, title: 'Partnership support', body: 'Talk through bulk publishing, local growth, and operational setup questions.' },
-          { icon: MapPin, title: 'Coverage requests', body: 'Need a new geography or category lane? We can shape the directory around it.' },
+          { icon: Building2, title: 'Listings & verification', body: 'Claim a profile, update services, or ask about badges and category placement.' },
+          { icon: Phone, title: 'Sales & partnerships', body: 'Bulk onboarding, co-marketing, and integrations for agencies or associations.' },
+          { icon: MapPin, title: 'Coverage & data quality', body: 'Request a new region, report duplicate listings, or suggest taxonomy tweaks.' },
         ]
       : productKind === 'editorial'
         ? [
-            { icon: FileText, title: 'Editorial submissions', body: 'Pitch essays, columns, and long-form ideas that fit the publication.' },
-            { icon: Mail, title: 'Newsletter partnerships', body: 'Coordinate sponsorships, collaborations, and issue-level campaigns.' },
-            { icon: Sparkles, title: 'Contributor support', body: 'Get help with voice, formatting, and publication workflow questions.' },
+            { icon: Mail, title: 'Editorial submissions', body: 'Pitch essays, columns, and long-form ideas that fit the publication.' },
+            { icon: Sparkles, title: 'Newsletter partnerships', body: 'Coordinate sponsorships, collaborations, and issue-level campaigns.' },
+            { icon: Phone, title: 'Contributor support', body: 'Get help with voice, formatting, and publication workflow questions.' },
           ]
         : productKind === 'visual'
           ? [
-              { icon: ImageIcon, title: 'Creator collaborations', body: 'Discuss gallery launches, creator features, and visual campaigns.' },
-              { icon: Sparkles, title: 'Licensing and use', body: 'Reach out about usage rights, commercial requests, and visual partnerships.' },
-              { icon: Mail, title: 'Media kits', body: 'Request creator decks, editorial support, or visual feature placement.' },
+              { icon: Sparkles, title: 'Creator collaborations', body: 'Discuss gallery launches, creator features, and visual campaigns.' },
+              { icon: Mail, title: 'Licensing and use', body: 'Reach out about usage rights, commercial requests, and visual partnerships.' },
+              { icon: Phone, title: 'Media kits', body: 'Request creator decks, editorial support, or visual feature placement.' },
             ]
           : [
-              { icon: Bookmark, title: 'Collection submissions', body: 'Suggest resources, boards, and links that deserve a place in the library.' },
-              { icon: Mail, title: 'Resource partnerships', body: 'Coordinate curation projects, reference pages, and link programs.' },
-              { icon: Sparkles, title: 'Curator support', body: 'Need help organizing shelves, collections, or profile-connected boards?' },
+              { icon: Mail, title: 'General support', body: 'Account issues, billing, and product questions.' },
+              { icon: Sparkles, title: 'Partnerships', body: 'Integrations, data projects, and co-marketing.' },
+              { icon: Phone, title: 'Phone queue', body: 'For time-sensitive production incidents.' },
             ]
 
   return (
     <div className={`min-h-screen ${tone.shell}`}>
       <NavbarShell />
+      <div className={tone.hero}>
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#4a5c4d]">Plans & contact</p>
+          <h1 className="mt-3 max-w-3xl text-4xl font-bold tracking-tight text-[#0f2415] sm:text-5xl">Let&apos;s route your request to the right team</h1>
+          <p className={`mt-5 max-w-2xl text-base leading-relaxed ${tone.muted}`}>
+            Share a bit of context below—whether you are listing a business, planning a partnership, or reporting inaccurate data. We read every message
+            during business hours.
+          </p>
+        </div>
+      </div>
       <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <section className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Contact {SITE_CONFIG.name}</p>
-            <h1 className="mt-4 text-5xl font-semibold tracking-[-0.05em]">A support page that matches the product, not a generic contact form.</h1>
-            <p className={`mt-5 max-w-2xl text-sm leading-8 ${tone.muted}`}>Tell us what you are trying to publish, fix, or launch. We will route it through the right lane instead of forcing every request into the same support bucket.</p>
-            <div className="mt-8 space-y-4">
+            <h2 className="text-lg font-semibold text-[#0f2415]">How we help</h2>
+            <div className="mt-6 space-y-4">
               {lanes.map((lane) => (
-                <div key={lane.title} className={`rounded-[1.6rem] p-5 ${tone.soft}`}>
-                  <lane.icon className="h-5 w-5" />
-                  <h2 className="mt-3 text-xl font-semibold">{lane.title}</h2>
-                  <p className={`mt-2 text-sm leading-7 ${tone.muted}`}>{lane.body}</p>
+                <div key={lane.title} className={`rounded-[1.75rem] p-6 ${tone.soft}`}>
+                  <lane.icon className="h-5 w-5 text-[#1a472a]" />
+                  <h3 className="mt-3 text-xl font-semibold text-[#0f2415]">{lane.title}</h3>
+                  <p className={`mt-2 text-sm leading-relaxed ${tone.muted}`}>{lane.body}</p>
                 </div>
               ))}
             </div>
+            <div className={`mt-8 rounded-[1.5rem] border border-[#c5d4c4] bg-white p-6 shadow-sm`}>
+              <p className="text-sm font-medium text-[#0f2415]">Prefer email?</p>
+              <a href={`mailto:support@${SITE_CONFIG.domain}`} className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1a472a] hover:underline">
+                <Mail className="h-4 w-4" />
+                support@{SITE_CONFIG.domain}
+              </a>
+              <p className={`mt-3 text-xs ${tone.muted}`}>Typical first response within one business day.</p>
+            </div>
           </div>
 
-          <div className={`rounded-[2rem] p-7 ${tone.panel}`}>
-            <h2 className="text-2xl font-semibold">Send a message</h2>
-            <form className="mt-6 grid gap-4">
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Your name" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="What do you need help with?" />
-              <textarea className="min-h-[180px] rounded-2xl border border-current/10 bg-transparent px-4 py-3 text-sm" placeholder="Share the full context so we can respond with the right next step." />
-              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${tone.action}`}>Send message</button>
+          <div className={`rounded-[2rem] p-8 ${tone.panel}`}>
+            <h2 className="text-2xl font-bold text-[#0f2415]">Send a message</h2>
+            <p className={`mt-2 text-sm ${tone.muted}`}>This form is for planning conversations—no account changes are made until we confirm details.</p>
+            <form className="mt-6 grid gap-4" action="#">
+              <Input className="h-12 rounded-xl border-[#c5d4c4] bg-white" placeholder="Your name" name="name" />
+              <Input className="h-12 rounded-xl border-[#c5d4c4] bg-white" placeholder="Work email" name="email" type="email" />
+              <Input className="h-12 rounded-xl border-[#c5d4c4] bg-white" placeholder="Topic (e.g. listing claim, press, partnership)" name="topic" />
+              <Textarea className="min-h-[160px] rounded-2xl border-[#c5d4c4] bg-white" placeholder="Tell us what you need, timelines, and any links that help." name="message" />
+              <Button type="submit" className={`h-12 rounded-full text-sm font-semibold ${tone.action}`}>
+                Send message
+              </Button>
             </form>
+            <p className={`mt-4 text-xs ${tone.muted}`}>
+              By submitting, you agree we may store this communication to improve support quality. See{' '}
+              <Link href="/privacy" className="font-medium text-[#1a472a] underline-offset-2 hover:underline">
+                privacy
+              </Link>
+              .
+            </p>
           </div>
         </section>
       </main>
