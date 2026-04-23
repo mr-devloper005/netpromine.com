@@ -2,80 +2,80 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Independent reading platform',
+    tagline: 'Trusted business directory',
   },
   footer: {
-    tagline: 'Stories, resources, and discoverable posts',
+    tagline: 'Discover companies, services, and local opportunities',
   },
   hero: {
-    badge: 'Latest stories and visuals',
-    title: ['A thoughtful home for', 'stories, visuals, and discovery.'],
+    badge: 'Featured industries & regions',
+    title: ['Find the right', 'business, faster.'],
     description:
-      'Explore fresh articles, image-led posts, and discoverable content across the platform through a calmer and clearer browsing experience.',
+      'Browse verified listings by category and location. Compare services, read trust signals, and connect with companies that fit what you need—without wading through unrelated content types.',
     primaryCta: {
-      label: 'Read latest stories',
-      href: '/articles',
+      label: 'Browse directory',
+      href: '/listings',
     },
     secondaryCta: {
-      label: 'Explore visuals',
-      href: '/images',
+      label: 'List your business',
+      href: '/register',
     },
-    searchPlaceholder: 'Search stories, visuals, listings, and more',
-    focusLabel: 'Focus',
-    featureCardBadge: 'latest cover rotation',
-    featureCardTitle: 'Latest posts shape the visual identity of the homepage.',
+    searchPlaceholder: 'Search businesses, categories, and locations',
+    focusLabel: 'Industry',
+    featureCardBadge: 'Directory spotlight',
+    featureCardTitle: 'Structured listings stay at the center of the experience.',
     featureCardDescription:
-      'Recent images and stories stay at the center of the experience without changing any core platform behavior.',
+      'Categories, locations, and ratings help you scan quickly while deeper detail stays one click away.',
   },
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
+      title: 'Business directory and local listings',
       description:
-        'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
-      openGraphTitle: 'Stories, visuals, and discoverable content',
+        'Explore verified business listings, industries, and locations in one focused directory experience.',
+      openGraphTitle: 'Business directory and local listings',
       openGraphDescription:
-        'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
-      keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
+        'Discover companies and services with clear categories, locations, and trust cues.',
+      keywords: ['business directory', 'listings', 'local businesses', 'B2B', 'company search'],
     },
-    introBadge: 'About the platform',
-    introTitle: 'Built for reading, browsing, and connecting different kinds of content.',
+    introBadge: 'About this directory',
+    introTitle: 'One place for business discovery—built for clarity, not clutter.',
     introParagraphs: [
-      'This site brings together article-style reading, visual browsing, and structured discovery so visitors can move naturally between different content types.',
-      'Instead of separating stories, visuals, and supporting resources into disconnected surfaces, the platform keeps them connected in one place with consistent navigation and easier exploration.',
-      'Whether someone starts with a story, an image-led post, a listing, or a resource page, they can keep discovering related content without friction.',
+      'This site is focused on business listings: structured profiles you can filter by industry, region, and relevance.',
+      'Navigation stays tight so visitors land on directories, categories, and featured businesses instead of unrelated content silos.',
+      'Whether you are comparing vendors or listing your own company, the layout keeps actions obvious and the reading rhythm calm.',
     ],
-    sideBadge: 'At a glance',
+    sideBadge: 'Why it works',
     sidePoints: [
-      'Reading-first homepage with stronger emphasis on stories and imagery.',
-      'Connected sections for articles, visuals, listings, and supporting resources.',
-      'Cleaner browsing rhythm designed to make exploration feel easier.',
-      'Lightweight interactions that keep the experience fast and readable.',
+      'Listing-first layout with strong category and location cues.',
+      'Featured businesses and search without magazine-style noise.',
+      'Simple paths to contact, save, or claim a listing.',
+      'Fast, lightweight pages that stay readable on every device.',
     ],
     primaryLink: {
-      label: 'Browse articles',
-      href: '/articles',
+      label: 'Open directory',
+      href: '/listings',
     },
     secondaryLink: {
-      label: 'See visuals',
-      href: '/images',
+      label: 'Add your listing',
+      href: '/register',
     },
   },
   cta: {
-    badge: 'Start exploring',
-    title: 'Explore articles, visuals, and resources through one connected experience.',
+    badge: 'Grow your presence',
+    title: 'Ready to put your business in front of people who are already searching?',
     description:
-      'Move between articles, image-led posts, listings, and resources through one clearer and more connected visual system.',
+      'Claim a listing, keep hours and contact info current, and show up alongside peers in your industry.',
     primaryCta: {
-      label: 'Get Started Free',
+      label: 'Create free account',
       href: '/register',
     },
     secondaryCta: {
-      label: 'Contact Sales',
+      label: 'Talk to us',
       href: '/contact',
     },
   },
-  taskSectionHeading: 'Latest {label}',
-  taskSectionDescriptionSuffix: 'Browse the newest posts in this section.',
+  taskSectionHeading: 'Featured {label}',
+  taskSectionDescriptionSuffix: 'Hand-picked listings and timely updates in this section.',
 } as const
 
 export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'social'>, { title: string; description: string }> = {
@@ -84,8 +84,8 @@ export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'soci
     description: 'Read articles, stories, guides, and long-form posts across topics and interests.',
   },
   listing: {
-    title: 'Listings and discoverable pages',
-    description: 'Explore listings, services, brands, and structured pages organized for easier browsing.',
+    title: 'Business directory',
+    description: 'Browse companies, services, and structured listings organized for quick comparison.',
   },
   classified: {
     title: 'Classifieds and announcements',
@@ -114,16 +114,16 @@ export const taskIntroCopy: Record<
   { title: string; paragraphs: string[]; links: { label: string; href: string }[] }
 > = {
   listing: {
-    title: 'Listings, services, and structured pages',
+    title: 'Business listings and directory pages',
     paragraphs: [
-      'Explore listings, services, brands, and discoverable pages across categories. Each entry is organized to make browsing clearer and help visitors quickly understand what a post offers.',
-      'Listings connect naturally with articles, images, resources, and other content types so supporting information stays easy to reach from the same platform.',
-      'Browse by category to compare posts in context, discover related content, and move between formats without losing your place.',
+      'Explore companies and services with category, location, and trust metadata so you can compare options quickly.',
+      'Each listing is built to answer the basics first—what they do, where they operate, and how to take the next step.',
+      'Use filters and search to narrow the directory, then open individual pages for full detail.',
     ],
     links: [
-      { label: 'Read articles', href: '/articles' },
-      { label: 'Explore classifieds', href: '/classifieds' },
-      { label: 'View profiles', href: '/profile' },
+      { label: 'Browse all listings', href: '/listings' },
+      { label: 'Search the directory', href: '/search' },
+      { label: 'List your business', href: '/register' },
     ],
   },
   article: {
