@@ -3,6 +3,7 @@ import { Building2, Mail, MapPin, Phone, Sparkles } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { SITE_CONFIG } from '@/lib/site-config'
+import { siteIdentity } from '@/config/site.identity'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
 import { CONTACT_PAGE_OVERRIDE_ENABLED, ContactPageOverride } from '@/overrides/contact-page'
@@ -112,9 +113,9 @@ export default function ContactPage() {
             </div>
             <div className={`mt-8 rounded-[1.5rem] border border-[#c5d4c4] bg-white p-6 shadow-sm`}>
               <p className="text-sm font-medium text-[#0f2415]">Prefer email?</p>
-              <a href={`mailto:support@${SITE_CONFIG.domain}`} className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1a472a] hover:underline">
+              <a href={`mailto:${siteIdentity.contactEmail}`} className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1a472a] hover:underline">
                 <Mail className="h-4 w-4" />
-                support@{SITE_CONFIG.domain}
+                {siteIdentity.contactEmail}
               </a>
               <p className={`mt-3 text-xs ${tone.muted}`}>Typical first response within one business day.</p>
             </div>
