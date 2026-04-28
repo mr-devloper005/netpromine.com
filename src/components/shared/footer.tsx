@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FileText, Building2, LayoutGrid, Tag, Github, Twitter, Linkedin, Image as ImageIcon, User, ArrowRight, Sparkles } from 'lucide-react'
 import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import { siteContent } from '@/config/site.content'
+import { siteIdentity } from '@/config/site.identity'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { FOOTER_OVERRIDE_ENABLED, FooterOverride } from '@/overrides/footer'
 
@@ -26,7 +27,6 @@ const footerLinks = {
   })),
   company: [
     { name: 'About', href: '/about' },
-    { name: 'Team', href: '/team' },
     { name: 'Careers', href: '/careers' },
     { name: 'Blog', href: '/blog' },
     { name: 'Press', href: '/press' },
@@ -197,8 +197,8 @@ export function Footer() {
             <p className="mt-5 max-w-sm text-sm leading-7 text-[#4a5c4d]">{SITE_CONFIG.description}</p>
             <p className="mt-4 text-sm text-[#4a5c4d]">
               <span className="font-medium text-[#142018]">Contact:</span>{' '}
-              <a href={`mailto:support@${SITE_CONFIG.domain}`} className="underline-offset-2 hover:underline">
-                support@{SITE_CONFIG.domain}
+              <a href={`mailto:${siteIdentity.contactEmail}`} className="underline-offset-2 hover:underline">
+                {siteIdentity.contactEmail}
               </a>
             </p>
             <div className="mt-5 flex gap-3">
