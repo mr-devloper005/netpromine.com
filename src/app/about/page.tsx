@@ -3,9 +3,7 @@ import { PageShell } from "@/components/shared/page-shell";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Building2, Leaf, MapPin, ShieldCheck, Target } from "lucide-react";
-import { mockTeamMembers } from "@/data/mock-data";
+import { Building2, Leaf, ShieldCheck, Target } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/site-config";
 
 const highlights = [
@@ -139,41 +137,6 @@ export default function AboutPage() {
           </ul>
         </CardContent>
       </Card>
-
-      <div className="mt-12">
-        <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#4a5c4d]">Leadership snapshot</p>
-            <h2 className="text-2xl font-bold text-[#0f2415]">People behind the directory</h2>
-          </div>
-          <Link href="/team" className="text-sm font-semibold text-[#1a472a] hover:underline">
-            View full team →
-          </Link>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {mockTeamMembers.map((member) => (
-            <Card key={member.id} className="border-[#c5d4c4] bg-white shadow-sm transition-transform hover:-translate-y-1">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-14 w-14 border-2 border-[#d5e3d4]">
-                    <AvatarImage src={member.avatar} alt={member.name} />
-                    <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-semibold text-[#0f2415]">{member.name}</p>
-                    <p className="text-xs text-[#4a5c4d]">{member.role}</p>
-                  </div>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-[#4a5c4d]">{member.bio}</p>
-                <p className="mt-3 flex items-center gap-1 text-xs text-[#4a5c4d]">
-                  <MapPin className="h-3.5 w-3.5" />
-                  {member.location}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
     </PageShell>
   );
 }
