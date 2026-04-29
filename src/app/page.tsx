@@ -10,7 +10,6 @@ import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import { buildPageMetadata } from '@/lib/seo'
 import { fetchTaskPosts } from '@/lib/task-data'
 import { siteContent } from '@/config/site.content'
-import { mockTeamMembers } from '@/data/mock-data'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind, type ProductKind } from '@/design/factory/get-product-kind'
 import type { SitePost } from '@/lib/site-connector'
@@ -291,31 +290,6 @@ function DirectoryHome({ primaryTask, listingPosts, classifiedPosts }: {
               </div>
             )}
           </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#4a5c4d]">People behind the directory</p>
-            <h2 className={`mt-2 text-2xl font-bold tracking-tight sm:text-3xl ${tone.title}`}>Meet our leadership team</h2>
-          </div>
-          <Link href="/team" className={`inline-flex items-center gap-2 rounded-full border border-[#c5d4c4] bg-white px-4 py-2 text-sm font-semibold text-[#1a472a] shadow-sm hover:bg-[#eef5ed]`}>
-            View all
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {mockTeamMembers.map((member) => (
-            <div key={member.id} className={`rounded-[2rem] p-6 text-center ${tone.panel}`}>
-              <div className="relative mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-white shadow-md">
-                <ContentImage src={member.avatar} alt={member.name} fill className="object-cover" />
-              </div>
-              <h3 className={`mt-5 text-lg font-semibold ${tone.title}`}>{member.name}</h3>
-              <p className={`text-sm ${tone.muted}`}>{member.role}</p>
-              <p className={`mt-3 text-sm leading-relaxed ${tone.muted}`}>{member.bio}</p>
-            </div>
-          ))}
         </div>
       </section>
 
