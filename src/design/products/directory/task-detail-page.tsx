@@ -142,12 +142,6 @@ export function DirectoryTaskDetailPage({
             </div>
           </div>
 
-          <div className="mt-7 border-t border-slate-200 pt-6">
-            <div className="rounded-2xl border border-slate-200 bg-[#f7f9fc] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">About this {task}</p>
-              <RichContent html={descriptionHtml} className="mt-3 text-sm leading-7 text-slate-700 prose-p:my-2 prose-a:text-blue-700" />
-            </div>
-          </div>
         </section>
 
         {related.length ? (
