@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { FileText, Building2, LayoutGrid, Tag, Github, Twitter, Linkedin, Image as ImageIcon, User, ArrowRight, Sparkles } from 'lucide-react'
+import { FileText, Building2, LayoutGrid, Tag, Image as ImageIcon, User, ArrowRight, Sparkles } from 'lucide-react'
 import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import { siteContent } from '@/config/site.content'
-import { siteIdentity } from '@/config/site.identity'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { FOOTER_OVERRIDE_ENABLED, FooterOverride } from '@/overrides/footer'
 
@@ -28,28 +27,16 @@ const footerLinks = {
   company: [
     { name: 'About', href: '/about' },
     { name: 'Careers', href: '/careers' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Press', href: '/press' },
   ],
   resources: [
     { name: 'Help center', href: '/help' },
-    { name: 'Plans & contact', href: '/contact' },
-    { name: 'Developers', href: '/developers' },
-    { name: 'System status', href: '/status' },
   ],
   legal: [
     { name: 'Privacy', href: '/privacy' },
     { name: 'Terms', href: '/terms' },
-    { name: 'Cookies', href: '/cookies' },
     { name: 'Licenses', href: '/licenses' },
   ],
 }
-
-const socialLinks = [
-  { name: 'Twitter', href: 'https://twitter.com', icon: Twitter },
-  { name: 'GitHub', href: 'https://github.com', icon: Github },
-  { name: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
-]
 
 export function Footer() {
   if (FOOTER_OVERRIDE_ENABLED) {
@@ -121,14 +108,12 @@ export function Footer() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Connect</h3>
-                <div className="mt-4 flex gap-3">
-                  {socialLinks.map((item) => (
-                    <Link key={item.name} href={item.href} target="_blank" rel="noopener noreferrer" className="rounded-full border border-white/10 bg-white/8 p-2.5 text-slate-200 hover:bg-white/12 hover:text-white">
-                      <item.icon className="h-4 w-4" />
-                    </Link>
+                <h3 className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Legal</h3>
+                <ul className="mt-4 space-y-3 text-sm text-slate-200">
+                  {footerLinks.legal.map((item) => (
+                    <li key={item.name}><Link href={item.href} className="hover:text-white">{item.name}</Link></li>
                   ))}
-                </div>
+                </ul>
               </div>
             </div>
           </div>
@@ -148,9 +133,9 @@ export function Footer() {
                 <Sparkles className="h-3.5 w-3.5" />
                 Editorial desk
               </div>
-              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">{SITE_CONFIG.name}</h3>
-              <p className="mt-4 max-w-md text-sm leading-7 text-[#72594a]">{SITE_CONFIG.description}</p>
-            </div>
+            <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">{SITE_CONFIG.name}</h3>
+            <p className="mt-4 max-w-md text-sm leading-7 text-[#72594a]">{SITE_CONFIG.description}</p>
+          </div>
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8b6d5a]">Sections</h4>
               <ul className="mt-4 space-y-3 text-sm">
@@ -195,19 +180,6 @@ export function Footer() {
               </div>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-7 text-[#4a5c4d]">{SITE_CONFIG.description}</p>
-            <p className="mt-4 text-sm text-[#4a5c4d]">
-              <span className="font-medium text-[#142018]">Contact:</span>{' '}
-              <a href={`mailto:${siteIdentity.contactEmail}`} className="underline-offset-2 hover:underline">
-                {siteIdentity.contactEmail}
-              </a>
-            </p>
-            <div className="mt-5 flex gap-3">
-              {socialLinks.map((item) => (
-                <Link key={item.name} href={item.href} target="_blank" rel="noopener noreferrer" className="rounded-full border border-[#c5d4c4] bg-white p-2.5 text-[#1a472a] hover:bg-[#eef5ed]">
-                  <item.icon className="h-4 w-4" />
-                </Link>
-              ))}
-            </div>
           </div>
           {(['platform', 'company', 'resources', 'legal'] as const).map((section) => (
             <div key={section}>

@@ -85,7 +85,7 @@ export default function HelpPage() {
             <h2 className="text-lg font-bold text-[#0f2415]">Product updates</h2>
             <p className="text-sm leading-relaxed text-[#4a5c4d]">Release notes and best practices for teams rolling out the directory internally.</p>
             <Button variant="link" className="h-auto justify-start p-0 text-[#1a472a]" asChild>
-              <Link href="/blog">Read the journal →</Link>
+              <Link href="/about">Read more about the platform →</Link>
             </Button>
           </CardContent>
         </Card>

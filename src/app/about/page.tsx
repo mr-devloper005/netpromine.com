@@ -6,12 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Building2, Leaf, ShieldCheck, Target } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/site-config";
 
-const highlights = [
-  { label: "Active listings", value: "8.6k+" },
-  { label: "Cities represented", value: "120+" },
-  { label: "Monthly searches", value: "240k" },
-];
-
 const values = [
   {
     title: "Clarity over clutter",
@@ -61,14 +55,6 @@ export default function AboutPage() {
               We started from a simple frustration: business research shouldn&apos;t feel like scrolling a generic feed. {SITE_CONFIG.name} organizes
               companies the way buyers actually think—by industry, geography, and proof of quality—then gives each listing room to tell a complete story.
             </p>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {highlights.map((item) => (
-                <div key={item.label} className="rounded-2xl border border-[#d5e3d4] bg-[#f4faf4] p-5">
-                  <div className="text-2xl font-bold text-[#0f2415]">{item.value}</div>
-                  <div className="mt-1 text-xs font-medium uppercase tracking-wide text-[#4a5c4d]">{item.label}</div>
-                </div>
-              ))}
-            </div>
           </CardContent>
         </Card>
         <div className="grid gap-4">

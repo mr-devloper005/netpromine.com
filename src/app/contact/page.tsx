@@ -1,9 +1,8 @@
 import Link from 'next/link'
-import { Building2, Mail, MapPin, Phone, Sparkles } from 'lucide-react'
+import { Building2, MapPin, Phone, Sparkles } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 import { SITE_CONFIG } from '@/lib/site-config'
-import { siteIdentity } from '@/config/site.identity'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
 import { CONTACT_PAGE_OVERRIDE_ENABLED, ContactPageOverride } from '@/overrides/contact-page'
@@ -69,18 +68,18 @@ export default function ContactPage() {
         ]
       : productKind === 'editorial'
         ? [
-            { icon: Mail, title: 'Editorial submissions', body: 'Pitch essays, columns, and long-form ideas that fit the publication.' },
+            { icon: Building2, title: 'Editorial submissions', body: 'Pitch essays, columns, and long-form ideas that fit the publication.' },
             { icon: Sparkles, title: 'Newsletter partnerships', body: 'Coordinate sponsorships, collaborations, and issue-level campaigns.' },
             { icon: Phone, title: 'Contributor support', body: 'Get help with voice, formatting, and publication workflow questions.' },
           ]
         : productKind === 'visual'
           ? [
               { icon: Sparkles, title: 'Creator collaborations', body: 'Discuss gallery launches, creator features, and visual campaigns.' },
-              { icon: Mail, title: 'Licensing and use', body: 'Reach out about usage rights, commercial requests, and visual partnerships.' },
+              { icon: MapPin, title: 'Licensing and use', body: 'Reach out about usage rights, commercial requests, and visual partnerships.' },
               { icon: Phone, title: 'Media kits', body: 'Request creator decks, editorial support, or visual feature placement.' },
             ]
           : [
-              { icon: Mail, title: 'General support', body: 'Account issues, billing, and product questions.' },
+              { icon: Building2, title: 'General support', body: 'Account issues, billing, and product questions.' },
               { icon: Sparkles, title: 'Partnerships', body: 'Integrations, data projects, and co-marketing.' },
               { icon: Phone, title: 'Phone queue', body: 'For time-sensitive production incidents.' },
             ]
@@ -110,14 +109,6 @@ export default function ContactPage() {
                   <p className={`mt-2 text-sm leading-relaxed ${tone.muted}`}>{lane.body}</p>
                 </div>
               ))}
-            </div>
-            <div className={`mt-8 rounded-[1.5rem] border border-[#c5d4c4] bg-white p-6 shadow-sm`}>
-              <p className="text-sm font-medium text-[#0f2415]">Prefer email?</p>
-              <a href={`mailto:${siteIdentity.contactEmail}`} className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1a472a] hover:underline">
-                <Mail className="h-4 w-4" />
-                {siteIdentity.contactEmail}
-              </a>
-              <p className={`mt-3 text-xs ${tone.muted}`}>Typical first response within one business day.</p>
             </div>
           </div>
 
