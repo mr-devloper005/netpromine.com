@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Bookmark, Building2, Check, Compass, FileText, Image as ImageIcon, LayoutGrid, Tag, User } from 'lucide-react'
+import { ArrowRight, Bookmark, Building2, Check, FileText, Image as ImageIcon, LayoutGrid, Tag, User } from 'lucide-react'
 import { ContentImage } from '@/components/shared/content-image'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
@@ -165,13 +165,9 @@ function DirectoryHome({ primaryTask, listingPosts, classifiedPosts }: {
   const mosaicPosts = featuredSource.slice(0, 4)
 
   return (
-    <main className="bg-[#fbfdfb]">
+    <div className="bg-[#fbfdfb]">
       <section className={tone.hero}>
         <div className="mx-auto max-w-7xl px-4 py-12 text-center sm:px-6 sm:py-16 lg:px-8">
-          <span className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] ${tone.badge}`}>
-            <Compass className="h-3.5 w-3.5" />
-            Business directory
-          </span>
           <h1 className={`mx-auto mt-6 max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl ${tone.title}`}>
             Discover trusted companies across industries and regions
           </h1>
@@ -305,7 +301,7 @@ function DirectoryHome({ primaryTask, listingPosts, classifiedPosts }: {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
 
@@ -315,7 +311,7 @@ function EditorialHome({ primaryTask, articlePosts, supportTasks }: { primaryTas
   const side = articlePosts.slice(1, 5)
 
   return (
-    <main className={tone.shell}>
+    <div className={tone.shell}>
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div>
@@ -380,7 +376,7 @@ function EditorialHome({ primaryTask, articlePosts, supportTasks }: { primaryTas
           ))}
         </div>
       </section>
-    </main>
+    </div>
   )
 }
 
@@ -390,7 +386,7 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
   const creators = profilePosts.slice(0, 3)
 
   return (
-    <main className={tone.shell}>
+    <div className={tone.shell}>
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div>
@@ -446,7 +442,7 @@ function VisualHome({ primaryTask, imagePosts, profilePosts, articlePosts }: { p
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
 
@@ -456,7 +452,7 @@ function CurationHome({ primaryTask, bookmarkPosts, profilePosts, articlePosts }
   const people = profilePosts.slice(0, 3)
 
   return (
-    <main className={tone.shell}>
+    <div className={tone.shell}>
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
         <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start">
           <div>
@@ -509,7 +505,7 @@ function CurationHome({ primaryTask, bookmarkPosts, profilePosts, articlePosts }
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
 
